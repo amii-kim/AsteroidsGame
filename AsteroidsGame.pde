@@ -26,6 +26,7 @@ public void keyPressed () {
   if (key =='2'){
   bob.turn(10);
 }
+}
 public void draw ()
 {
   background(0);
