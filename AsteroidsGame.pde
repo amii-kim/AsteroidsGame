@@ -20,9 +20,11 @@ public void keyPressed () {
   if(key == 'a'){
     bob.accelerate(1);
   }
-  if ( key == 'r'){
-    bob.turn(-16);
+  if ( key == '1'){
+    bob.turn(-10);
   }
+  if (key =='2'){
+  bob.turn(10);
 }
 public void draw ()
 {
