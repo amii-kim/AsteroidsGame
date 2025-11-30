@@ -1,3 +1,4 @@
+
 class Spaceship extends Floater
 {
   public Spaceship() {
@@ -11,9 +12,12 @@ class Spaceship extends Floater
     myXspeed = 0;
     myYspeed=0;
   }
- public double getmyXspeed(){
-  return myXspeed;
-  }
+ public float getX() 
+ { return (float) myCenterX; 
+ }
+public float getY() 
+{ return (float) myCenterY; 
+}
   public void setXspeed(double x) 
   {
     myXspeed = x;
