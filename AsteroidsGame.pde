@@ -1,17 +1,18 @@
-
 Spaceship bob = new Spaceship();
 Asteroid sally = new Asteroid();
+ArrayList <Bullet> shots = new ArrayList <Bullet>();
 Star [] nightSky = new Star [200];
  ArrayList <Asteroid> rocks;
  
 
+
 public void setup ()
 { 
+    size (500, 500);
   rocks= new ArrayList <Asteroid>();
-  for (int i = 0; i < 6; i++) {
+  for (int i = 0; i < 20; i++) {
     rocks.add(new Asteroid());
   }
-  size (500, 500);
   for (int i = 0; i < nightSky.length; i++)
   {
     nightSky[i] = new Star ();
@@ -19,11 +20,10 @@ public void setup ()
 }
 public void keyPressed () {
   if (key == 'h') {
-    bob.setXspeed(0);
-    bob.setYspeed(0);
+    bob. setXSpeed(0);
+    bob.setYSpeed(0);
     bob.myCenterX= Math.random()*400;
     bob.myCenterY=Math.random()*400;
- 
   }
   if(key == 'a'){
     bob.accelerate(1);
@@ -34,11 +34,14 @@ public void keyPressed () {
   if (key =='2'){
   bob.turn(10);
 }
+  if (key == ' ') {
+    shots.add (new Bullet(bob));        
+  }
 }
 public void draw ()
 {
   background(0);
-  for (int i =0; i < rocks.size(); i++)
+  for (int i =rocks.size()-1; i >= 0; i--)
   {
     rocks.get(i).move();
     rocks.get(i).show();
@@ -48,6 +51,22 @@ public void draw ()
   }
   bob.move();
   bob.show();
+  for (int i = shots.size()-1 ; i >= 0; i--){
+    Bullet b = shots.get(i);
+    b.move();
+    b.show();    
+    
+   for ( int j = rocks.size() -1; j >= 0; j--){
+     Asteroid a = rocks.get(j);
+     float d = dist((float)b.getX(), (float)b.getY(),a.getX(), a.getY());
+    if (d < 10){
+      rocks.remove(j);
+      shots.remove(i);
+      break;
+    }
+   }
+ 
+  }
   for (int i = 0; i < nightSky.length; i++)
   {
     nightSky[i].show();
